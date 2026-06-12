@@ -1,0 +1,26 @@
+package Conjuntos;
+
+public class TestConjunto {
+    static void main() {
+        Conjunto conj = new Conjunto(5);
+
+        conj.insertar("Sistemas");
+        conj.insertar("Programacion python");
+        conj.insertar("Analisis de datos");
+        conj.mostrar();
+
+        Conjunto conjB = new Conjunto(3);
+        conjB.insertar("Programacion JavaScript");
+        conjB.insertar("Analisis de datos");
+        conjB.insertar("Programacion python");
+        conjB.mostrar();
+        conj.union(conjB);
+
+        System.out.println("Formaciones relacionadas");
+        conj.interseccion(conjB);
+
+        conj.diferencia(conjB);
+
+
+    }
+}
