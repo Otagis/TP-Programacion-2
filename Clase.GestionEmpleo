@@ -3,8 +3,8 @@ public class GestionEmpleo {
     private static ColaCircular colaPostulantes;
 
     
-    public static void inicializarCola(int limite) {
-        colaPostulantes = new ColaCircular(limite);
+    public static void inicializarCola(int maximo) {
+        colaPostulantes = new ColaCircular(maximo);
     }
 
    
