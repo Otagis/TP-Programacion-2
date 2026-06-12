@@ -1,0 +1,32 @@
+public class GestionEmpleo {
+    
+    private static ColaCircular colaPostulantes;
+
+    
+    public static void inicializarCola(int maximo) {
+        colaPostulantes = new ColaCircular(maximo);
+    }
+
+   
+    public static boolean agregarPostulante(String postulante) {
+        if (colaPostulantes != null) {
+            
+            return colaPostulantes.encolar(postulante);
+        }
+        return false; 
+    }
+
+    
+    public static Object desencolarPostulante() {
+        if (colaPostulantes != null) {
+            return colaPostulantes.desencolar();
+        }
+        return null;
+    }
+
+    
+    public static boolean existeOferta() {
+        return colaPostulantes != null;
+    }
+
+}
