@@ -199,4 +199,12 @@ public class GrafoMatrizAdyacencia implements IGrafo {
             System.out.println();
         }
     }
+
+    @Override
+    public Usuario devolverVertice(int actual) {
+        if (actual < 0 || actual >= cantidad) {
+            return null;
+        }
+        return vertices[actual];
+    }
 }

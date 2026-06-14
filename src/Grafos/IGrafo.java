@@ -18,7 +18,9 @@ public interface IGrafo <T> {
 
         void mostrarVertices();
 
-        public void dfs(Usuario primero);
+        void dfs(Usuario primero);
 
-        public void bfs(Usuario primero);
+        void bfs(Usuario primero);
+
+        Usuario devolverVertice(int actual);
 }

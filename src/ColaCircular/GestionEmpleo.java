@@ -1,8 +1,9 @@
+package ColaCircular;
+
 public class GestionEmpleo {
     
     private static ColaCircular colaPostulantes;
 
-    
     public static void inicializarCola(int maximo) {
         colaPostulantes = new ColaCircular(maximo);
     }

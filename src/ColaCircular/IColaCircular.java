@@ -1,4 +1,6 @@
-public interface RecColaCircular {
+package ColaCircular;
+
+public interface IColaCircular {
     public boolean encolar(String elemento);
     public Object desencolar();
     public boolean estaLlena();

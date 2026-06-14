@@ -3,7 +3,7 @@ import Diccionari.DictStr;
 import Grafos.GrafoMatrizAdyacencia;
 import Grafos.IGrafo;
 import Grafos.Usuario;
-
+import ColaCircular.GestionEmpleo;
 import java.util.Scanner;
 
 public class MainRedSocialDEMO{
@@ -44,6 +44,11 @@ public class MainRedSocialDEMO{
         String Tformaciones;
         String continuar = "S";
 
+        int decision = 0;
+        int maximo = 0;
+        Object trabajador = "";
+        String lectura = "S";
+
 
         System.out.println("Hola bienvenido a [INSERTAR_NOMBRE_DE_RED_SOCIAL_GENERICA].");
         System.out.println();
@@ -55,7 +60,7 @@ public class MainRedSocialDEMO{
                 switch (opcion) {
 
                     case 1:
-                        System.out.print("Ingrese su contraseña a continuacion: ");
+                        System.out.print("Ingrese su ID a continuacion: ");
                         contraseña = sc.next();
                         sesionActual = instant.recuperarValor(contraseña);
 
@@ -80,21 +85,58 @@ public class MainRedSocialDEMO{
             }
             else if (sesionActual.getEmpleador()){
                 System.out.print("Gestion de cuenta de empleador: ");
-                System.out.println("1 para cerrar sesion correctamente.");
+                System.out.println("1 para cerrar sesion correctamente, 2 para agregar una propuesta, 3 para ver propuestas.");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
-                        System.out.println("cerrando sesion correctamente.");
+                        System.out.println("Cerrando sesion correctamente.");
                         iniciarsesion = false;
                         break;
 
+                    case 2:
+                        System.out.println("Por favor, ingrese la cantidad maxima de solicitudes de empleo que desea habilitar:");
+                        maximo = sc.nextInt();
 
 
+                        GestionEmpleo.inicializarCola(maximo);
+
+
+                        System.out.println("Propuesta iniciada con límite de " + maximo + " postulantes.");
+                        break;
+
+                    case 3:
+                        if (!GestionEmpleo.existeOferta()) {
+                            System.out.println("Error: Primero debe crear una propuesta en la opción 1.");
+                            break;
+                        }
+
+                        trabajador = GestionEmpleo.desencolarPostulante();
+
+                        if (trabajador != null) {
+                            while (!lectura.equals("N")) {
+                                Usuario usr = (Usuario) trabajador;
+
+                                System.out.println("Caracteristicas del usuario: ");
+                                System.out.println("Nombre: " + usr.getNombre());
+                                System.out.println("Formaciones/Aptitudes: " + usr.getFormaciones());
+                                System.out.println("------------------------------------------------");
+                                System.out.println("Desea seguir viendo a los demas trabajadores? (S/N):");
+                                lectura = sc.nextLine();
+                            }
+
+                        } else {
+                            System.out.println("No hay más postulantes en la cola.");
+                        }
+                        break;
+
+                    default:
+                        System.out.println("opcion no valida.");
+                        break;
                 }
             }
             else {
                 System.out.println("Gestion de cuenta de empleado: ");
-                System.out.println("1 para cerrar sesion correctamente.");
+                System.out.println("1 para cerrar sesion correctamente, 2 para ingresar sus formaciones.");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
@@ -106,30 +148,20 @@ public class MainRedSocialDEMO{
                         Conjunto Formaciones = new Conjunto(10);
 
 
-                        while ( !continuar.equals("N")){
+                        while (!continuar.equals("N")){
                             Tformaciones = sc.next();
                             System.out.println("Tformacion ->"+Tformaciones);
                             Formaciones.insertar(Tformaciones);
                             System.out.println("Formacion ingresada correctamente. ");
                             System.out.println("Desea continuar agregando Formaciones? (S/N)");
-                            continuar = sc.nextLine();
+                            continuar = sc.next();
 
-                                ;
                             if (Formaciones.estaLleno()){
+                                System.out.println("Limite de formaciones.");
                                 break;
                             }
-                        }break;
-
-
-
-
-                        /*}while (!Formaciones.estaLleno());
-                        break;*/
-
-
-
-
-
+                        }
+                        break;
                 }
 
             }

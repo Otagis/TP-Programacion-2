@@ -1,5 +1,6 @@
+package ColaCircular;
 
-public class ColaCircular implements RecColaCircular {
+public class ColaCircular implements IColaCircular {
     private String[] datos;
     private int frente;
     private int fin;
