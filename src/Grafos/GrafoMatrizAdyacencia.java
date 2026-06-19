@@ -9,7 +9,6 @@ public class GrafoMatrizAdyacencia implements IGrafo {
     private boolean dirigido;
 
 
-
     public GrafoMatrizAdyacencia(int capacidad, boolean dirigido) {
         this.capacidad = capacidad;
         this.dirigido = dirigido;
@@ -70,7 +69,7 @@ public class GrafoMatrizAdyacencia implements IGrafo {
         int posOrigen = obtenerIndice(origen);
         int posDestino = obtenerIndice(destino);
 
-       if (posOrigen == -1 || posDestino == -1) {
+        if (posOrigen == -1 || posDestino == -1) {
             System.out.println("Uno de los vértices no existe.");
             return;
         }
@@ -143,7 +142,7 @@ public class GrafoMatrizAdyacencia implements IGrafo {
     @Override
     public void dfs(Usuario primero) {
         int posicionInicial = obtenerIndice(primero);
-        if (posicionInicial == -1){
+        if (posicionInicial == -1) {
             System.out.println("El usuario no existe");
             return;
         }
@@ -153,12 +152,12 @@ public class GrafoMatrizAdyacencia implements IGrafo {
         dfsRec(posicionInicial, passed);
     }
 
-    public void dfsRec(int pos, boolean[] passed){
+    public void dfsRec(int pos, boolean[] passed) {
         passed[pos] = true;
         System.out.println(vertices[pos].nombre);
 
-        for (int i = 0; i < cantidad; i++){
-            if (matriz[pos][i] == 1 && !passed[i]){
+        for (int i = 0; i < cantidad; i++) {
+            if (matriz[pos][i] == 1 && !passed[i]) {
                 dfsRec(i, passed);
             }
         }
@@ -207,4 +206,49 @@ public class GrafoMatrizAdyacencia implements IGrafo {
         }
         return vertices[actual];
     }
+    public void buscarUsuariosPorFiltro(String criterio, boolean esPorFormacion) {
+        System.out.println("\n--- RESULTADOS DE BÚSQUEDA ---");
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidad; i++) {
+            Usuario usr = vertices[i];
+
+            if (usr.getEmpleador()) {
+                continue;
+            }
+
+            boolean cumpleCondicion = false;
+
+            if (esPorFormacion) {
+                if (usr.getFormaciones() != null) {
+                    String formacionesTexto = usr.getFormaciones().toString().toLowerCase();
+                    if (formacionesTexto.contains(criterio.toLowerCase())) {
+                        cumpleCondicion = true;
+                    }
+                }
+            } else {
+                if (usr.getTitulo() != null) {
+                    String tituloTexto = usr.getTitulo().toString().toLowerCase();
+                    if (tituloTexto.contains(criterio.toLowerCase())) {
+                        cumpleCondicion = true;
+                    }
+                }
+            }
+
+            if (cumpleCondicion) {
+                System.out.println("Nombre: " + usr.getNombre());
+                System.out.println("Tipo: " + (esPorFormacion ? "Formación/Aptitud" : "Título"));
+                System.out.println("---------------------------------");
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No se encontraron usuarios con el criterio: " + criterio);
+        }
+
+    }
 }
+
+
+

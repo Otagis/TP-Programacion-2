@@ -10,11 +10,6 @@ public class MainRedSocialDEMO{
     public static void main(String[] args) {
         DictStr instant = new DictStr(3);
         IGrafo<Usuario> red = new GrafoMatrizAdyacencia(3, false);
-        String nombre;
-        String contrasena;
-        int opc_empleador = 0;
-        int codigo_empleador = 137;
-        int codigo;
 
         Conjunto a = new Conjunto(3); //pim
         Conjunto b = new Conjunto(3);
@@ -24,10 +19,12 @@ public class MainRedSocialDEMO{
         b.insertar("C++");
         b.insertar("C");
         b.insertar("Holy C");
+        Conjunto c = new Conjunto(3);
+        c.insertar("ingInf");
 
-        Usuario maxi = new Usuario("Maxi", "12345", new Conjunto(3),true );
-        Usuario bruno = new Usuario("Bruno", "kactus", a, false);
-        Usuario ramiro = new Usuario("Ramiro", "jhonson", b,false);
+        Usuario maxi = new Usuario("Maxi", "12345", new Conjunto(3),true,c);
+        Usuario bruno = new Usuario("Bruno", "kactus", a, false,c);
+        Usuario ramiro = new Usuario("Ramiro", "jhonson", b,false,c);
 
         red.insertarVertice(maxi);
         red.insertarVertice(bruno);
@@ -56,20 +53,12 @@ public class MainRedSocialDEMO{
 
 
         System.out.println("Hola bienvenido a [INSERTAR_NOMBRE_DE_RED_SOCIAL_GENERICA].");
-        System.out.println(" ");
+        System.out.println();
 
         do {
             if (!iniciarsesion){
-                System.out.println("-----------------------------------------------------------------------------");
-                System.out.println("---------------------------------LOG IN--------------------------------------");
-                System.out.println("-----------------------------------------------------------------------------");
-                System.out.println(" ");
-                System.out.println(" 1. Ingresar");
-                System.out.println(" 2. Registrarse");
-                System.out.println("-1. Cerrar sesion");
-
+                System.out.println("Ingrese 1 para ingresar la cuenta o -1 " + "para salir de la red totalmente.");
                 opcion = sc.nextInt();
-
                 switch (opcion) {
 
                     case 1:
@@ -77,51 +66,17 @@ public class MainRedSocialDEMO{
                         contraseña = sc.next();
                         sesionActual = instant.recuperarValor(contraseña);
 
-                        System.out.println();
-                        System.out.println("Se ha iniciado sesion correctamente.");
-                        System.out.println();
-                        System.out.println("Bienvenido" + sesionActual.getNombre());
-                        iniciarsesion = true;
-
+                        if (sesionActual != null) {
+                            System.out.println();
+                            System.out.println("Se ha iniciado sesion correctamente.");
+                            System.out.println();
+                            System.out.println("Bienvenido" + sesionActual.getNombre());
+                            iniciarsesion = true;
+                        }else {
+                            System.out.println("No se ha iniciado sesion correctamente.");
+                        }
 
                         break;
-
-                    case 2:
-                        System.out.println("Ingrese sus datos");
-                        System.out.println("Si usted es un usuario corriente, ingrese solo sus datos");
-                        System.out.println("Si pertenece a una empresa y desea registrarse para usar las funciones de empleador, ingrese el codigo de empleador.");
-                        System.out.println("La opcion aparecera despues de ingresar nombre y contrasena");
-                        System.out.println(" ");
-                        System.out.print("Ingrese su nombre: ");
-                        nombre = sc.nextLine();
-                        System.out.println(" ");
-                        System.out.print("Ingrese su contrasena");
-                        contrasena = sc.nextLine();
-                        System.out.println(" ");
-                        System.out.println("Usted es un empleador?");
-                        System.out.println("1. Si");
-                        System.out.println("2. No");
-                        opc_empleador = sc.nextInt();
-
-                        if (opc_empleador == 1){
-                            System.out.println("Ingrese su codigo de empleador");
-                            codigo = sc.nextInt();
-                            while ((codigo != codigo_empleador)){
-
-                                System.out.println("Codigo equivocado, vuelva a intentarlo");
-
-                            }
-                            Usuario nuevo_usuario = new Usuario(nombre, contrasena, new Conjunto(3), true);
-                            break;
-
-                        }
-                        else{
-                            System.out.println("Usuario creado");
-                            Usuario nuevo_usuario = new Usuario(nombre, contrasena, new Conjunto(3), false);
-                            break;
-                        }
-
-
 
 
 
@@ -134,14 +89,8 @@ public class MainRedSocialDEMO{
                 }
             }
             else if (sesionActual.getEmpleador()){
-                System.out.println("====================================================================================");
-                System.out.println("========================Gestion de cuenta de empleador==============================");
-                System.out.println("====================================================================================");
-                System.out.println(" ");
-                System.out.println("1  Para cerrar sesion correctamente");
-                System.out.println("2. Agregar propuesta");
-                System.out.println("3. Ver puestos para la propuesta");
-                System.out.println("4. ");
+                System.out.print("Gestion de cuenta de empleador: ");
+                System.out.println("1 para cerrar sesion correctamente, 2 para agregar una propuesta, 3 para ver propuestas.");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
@@ -185,6 +134,27 @@ public class MainRedSocialDEMO{
                         }
                         break;
 
+                    case 4:
+                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
+                        System.out.println("1. Buscar por Formación/Aptitud");
+                        System.out.println("2. Buscar por Título");
+                        int tipoBusqueda = sc.nextInt();
+
+                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+                        String palabraClave = sc.next();
+
+                        GrafoMatrizAdyacencia miGrafo = (GrafoMatrizAdyacencia) red;
+
+                        if (tipoBusqueda == 1) {
+                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
+                        } else if (tipoBusqueda == 2) {
+                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
+                        } else {
+                            System.out.println("Opción de búsqueda no válida.");
+                        }
+                        break;
+
+
                     default:
                         System.out.println("opcion no valida.");
                         break;
@@ -192,11 +162,7 @@ public class MainRedSocialDEMO{
             }
             else {
                 System.out.println("Gestion de cuenta de empleado: ");
-                System.out.println("1  Para cerrar sesion correctamente");
-                System.out.println("2. Para ingresar sus formaciones");
-                System.out.println("3. Para buscar usuarios");
-                System.out.println("4. Ver propuestas y anotarse");
-                System.out.println("5. Modificar perfil");
+                System.out.println("1 para cerrar sesion correctamente, 2 para ingresar sus formaciones.");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:

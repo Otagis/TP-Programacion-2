@@ -7,12 +7,14 @@ public class Usuario {
     String contraseña;
     Boolean empleador;
     Conjunto formaciones;
+    Conjunto titulo;
 
-    public Usuario(String nombre, String contraseña, Conjunto formaciones,  Boolean empleador) {
+    public Usuario(String nombre, String contraseña, Conjunto formaciones,  Boolean empleador,  Conjunto tintulo) {
         this.nombre = nombre;
         this.contraseña = contraseña;
         this.formaciones = formaciones;
         this.empleador = empleador;
+        this.titulo =  tintulo;
     }
 
     public String getNombre() {
@@ -28,6 +30,8 @@ public class Usuario {
     public String getContraseña() {
         return contraseña;
     }
+
+    public Conjunto getTitulo() {return titulo;}
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
