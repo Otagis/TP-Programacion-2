@@ -92,15 +92,16 @@ public class MainRedSocialDEMO{
                         System.out.println("Si pertenece a una empresa y desea registrarse para usar las funciones de empleador, ingrese el codigo de empleador.");
                         System.out.println("La opcion aparecera despues de ingresar nombre y contrasena");
                         System.out.println(" ");
-                        System.out.println("Ingrese su nombre");
+                        System.out.print("Ingrese su nombre: ");
                         nombre = sc.nextLine();
                         System.out.println(" ");
-                        System.out.println("Ingrese su contrasena");
+                        System.out.print("Ingrese su contrasena");
                         contrasena = sc.nextLine();
                         System.out.println(" ");
                         System.out.println("Usted es un empleador?");
                         System.out.println("1. Si");
                         System.out.println("2. No");
+                        opc_empleador = sc.nextInt();
 
                         if (opc_empleador == 1){
                             System.out.println("Ingrese su codigo de empleador");
