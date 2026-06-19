@@ -10,6 +10,11 @@ public class MainRedSocialDEMO{
     public static void main(String[] args) {
         DictStr instant = new DictStr(3);
         IGrafo<Usuario> red = new GrafoMatrizAdyacencia(3, false);
+        String nombre;
+        String contrasena;
+        int opc_empleador = 0;
+        int codigo_empleador = 137;
+        int codigo;
 
         Conjunto a = new Conjunto(3); //pim
         Conjunto b = new Conjunto(3);
@@ -51,12 +56,20 @@ public class MainRedSocialDEMO{
 
 
         System.out.println("Hola bienvenido a [INSERTAR_NOMBRE_DE_RED_SOCIAL_GENERICA].");
-        System.out.println();
+        System.out.println(" ");
 
         do {
             if (!iniciarsesion){
-                System.out.println("Ingrese 1 para ingresar la cuenta o -1 " + "para salir de la red totalmente.");
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("---------------------------------LOG IN--------------------------------------");
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println(" ");
+                System.out.println(" 1. Ingresar");
+                System.out.println(" 2. Registrarse");
+                System.out.println("-1. Cerrar sesion");
+
                 opcion = sc.nextInt();
+
                 switch (opcion) {
 
                     case 1:
@@ -73,6 +86,42 @@ public class MainRedSocialDEMO{
 
                         break;
 
+                    case 2:
+                        System.out.println("Ingrese sus datos");
+                        System.out.println("Si usted es un usuario corriente, ingrese solo sus datos");
+                        System.out.println("Si pertenece a una empresa y desea registrarse para usar las funciones de empleador, ingrese el codigo de empleador.");
+                        System.out.println("La opcion aparecera despues de ingresar nombre y contrasena");
+                        System.out.println(" ");
+                        System.out.println("Ingrese su nombre");
+                        nombre = sc.nextLine();
+                        System.out.println(" ");
+                        System.out.println("Ingrese su contrasena");
+                        contrasena = sc.nextLine();
+                        System.out.println(" ");
+                        System.out.println("Usted es un empleador?");
+                        System.out.println("1. Si");
+                        System.out.println("2. No");
+
+                        if (opc_empleador == 1){
+                            System.out.println("Ingrese su codigo de empleador");
+                            codigo = sc.nextInt();
+                            while ((codigo != codigo_empleador)){
+
+                                System.out.println("Codigo equivocado, vuelva a intentarlo");
+
+                            }
+                            Usuario nuevo_usuario = new Usuario(nombre, contrasena, new Conjunto(3), true);
+                            break;
+
+                        }
+                        else{
+                            System.out.println("Usuario creado");
+                            Usuario nuevo_usuario = new Usuario(nombre, contrasena, new Conjunto(3), false);
+                            break;
+                        }
+
+
+
 
 
                     case -1:
@@ -84,8 +133,14 @@ public class MainRedSocialDEMO{
                 }
             }
             else if (sesionActual.getEmpleador()){
-                System.out.print("Gestion de cuenta de empleador: ");
-                System.out.println("1 para cerrar sesion correctamente, 2 para agregar una propuesta, 3 para ver propuestas.");
+                System.out.println("====================================================================================");
+                System.out.println("========================Gestion de cuenta de empleador==============================");
+                System.out.println("====================================================================================");
+                System.out.println(" ");
+                System.out.println("1  Para cerrar sesion correctamente");
+                System.out.println("2. Agregar propuesta");
+                System.out.println("3. Ver puestos para la propuesta");
+                System.out.println("4. ");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
@@ -136,7 +191,11 @@ public class MainRedSocialDEMO{
             }
             else {
                 System.out.println("Gestion de cuenta de empleado: ");
-                System.out.println("1 para cerrar sesion correctamente, 2 para ingresar sus formaciones.");
+                System.out.println("1  Para cerrar sesion correctamente");
+                System.out.println("2. Para ingresar sus formaciones");
+                System.out.println("3. Para buscar usuarios");
+                System.out.println("4. Ver propuestas y anotarse");
+                System.out.println("5. Modificar perfil");
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
