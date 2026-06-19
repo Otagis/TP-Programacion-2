@@ -11,7 +11,7 @@ public class MainRedSocialDEMO{
         DictStr instant = new DictStr(3);
         IGrafo<Usuario> red = new GrafoMatrizAdyacencia(3, false);
 
-        Conjunto a = new Conjunto(3);
+        Conjunto a = new Conjunto(3); //pim
         Conjunto b = new Conjunto(3);
         a.insertar("Python");
         a.insertar("C#");
