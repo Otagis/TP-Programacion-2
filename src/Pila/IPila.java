@@ -8,4 +8,5 @@ public interface IPila {
     public boolean pilaVacia();
     public boolean pilaVacia2();
     public boolean pilaLllena();
+
 }

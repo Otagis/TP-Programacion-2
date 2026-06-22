@@ -158,6 +158,7 @@ public class MainRedSocialDEMO{
                 System.out.println("2. Agregar propuesta");
                 System.out.println("3. Ver puestos para la propuesta");
                 System.out.println("4. Buscar usuarios");
+                System.out.println("5. Menu de cambios");
 
                 opcion = sc.nextInt();
                 switch (opcion) {
@@ -280,6 +281,57 @@ public class MainRedSocialDEMO{
                             System.out.println("Opción de búsqueda no válida.");
                         }
                         break;
+                    case 4:
+
+
+                    case 5:
+                        DeshacerCambios gestorCambios = new DeshacerCambios();
+                        System.out.println("=========================");
+                        System.out.println("1. Modificar Nombre");
+                        System.out.println("2. Modificar Formaciones");
+                        System.out.println("3. Deshacer último cambio de Nombre");
+                        System.out.println("4. Deshacer último cambio de Formaciones");
+                        System.out.println("5. Salir");
+                        System.out.print("Seleccione una opción: ");
+
+                        int opc = sc.nextInt();
+
+                        switch (opc) {
+                            case 1:
+                                System.out.print("Ingrese el nuevo nombre: ");
+                                String nuevoNombre = sc.nextLine();
+
+                                gestorCambios.modificarNombre(usuario, nuevoNombre);
+                                System.out.println("¡Nombre modificado con éxito!");
+                                break;
+
+                            case 2:
+                                System.out.println("Creando un nuevo conjunto de formaciones...");
+                                Conjunto nuevasFormaciones = new Conjunto(6);
+                                gestorCambios.modificarFormaciones(usuario, nuevasFormaciones);
+                                System.out.println("¡Formaciones modificadas con éxito!");
+                                break;
+
+                            case 3:
+                                System.out.println("Intentando deshacer nombre...");
+                                gestorCambios.deshacerNombre(usuario);
+                                break;
+
+                            case 4:
+                                System.out.println("Intentando deshacer formaciones...");
+                                gestorCambios.deshacerFormaciones(usuario);
+                                break;
+
+                            case 5:
+                                System.out.println("Saliendo del programa del perfil.");
+                                break;
+
+                            default:
+                                System.out.println("Opción inválida. Intente de nuevo.");
+                                break;
+
+
+
 
                 }
 
