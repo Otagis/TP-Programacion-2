@@ -66,7 +66,7 @@ public class Conjunto implements ICOnjunto {
     @Override
     public int pertenece(String elemento) {
         for (int i = 0; i<cantidad;i++) {
-            if (datos[i] == elemento) {
+            if (datos[i].equals(elemento)) {
                 return i;
             }
         }

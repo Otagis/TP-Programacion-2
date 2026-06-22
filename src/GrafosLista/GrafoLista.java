@@ -287,7 +287,46 @@ public class GrafoLista implements Igrafo {
 
         while (aux != null){
             Usuario usr = aux.dato;
+
+            if (!usr.getEmpleador()){
+                boolean cumpleCondicion = false;
+
+                if (esPorFormacion) {
+                    if (usr.getFormaciones() != null) {
+//                        String formacionesTexto = usr.getFormaciones().toString().toLowerCase();
+//                        if (formacionesTexto.contains(criterio.toLowerCase())) {
+//                            cumpleCondicion = true;
+//                        }
+                        if (usr.formaciones.pertenece(criterio) != -1){
+                            cumpleCondicion = true;
+                        }
+                    }
+                } else {
+                    if (usr.getTitulo() != null) {
+//                        String tituloTexto = usr.getTitulo().toString().toLowerCase();
+//                        if (tituloTexto.contains(criterio.toLowerCase())) {
+//                            cumpleCondicion = true;
+//                        }
+                        if (usr.titulo.pertenece(criterio) != -1){
+                            cumpleCondicion = true;
+                        }
+                    }
+                }
+                if (cumpleCondicion){
+                    System.out.println("Nombre: " + usr.getNombre());
+                    System.out.println("Tipo: " + (esPorFormacion ? "Formación/Aptitud" : "Título"));
+                    System.out.println("---------------------------------");
+                    encontrado = true;
+                }
+            }
+
+            aux = aux.siguiente;
         }
+
+        if (!encontrado){
+            System.out.println("No se encontraron usuarios con el criterio: " + criterio);
+        }
+
     }
 
 }

@@ -208,23 +208,21 @@ public class MainRedSocialDEMO{
                         break;
 
                     case 3:
-//                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
-//                        System.out.println("1. Buscar por Formación/Aptitud");
-//                        System.out.println("2. Buscar por Título");
-//                        int tipoBusqueda = sc.nextInt();
-//
-//                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
-//                        String palabraClave = sc.next();
-//
-//                        GrafoLista miGrafo = (GrafoLista) red;
-//
-//                        if (tipoBusqueda == 1) {
-//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
-//                        } else if (tipoBusqueda == 2) {
-//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
-//                        } else {
-//                            System.out.println("Opción de búsqueda no válida.");
-//                        }
+                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
+                        System.out.println("1. Buscar por Formación/Aptitud");
+                        System.out.println("2. Buscar por Título");
+                        int tipoBusqueda = sc.nextInt();
+
+                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+                        String palabraClave = sc.next();
+
+                        if (tipoBusqueda == 1) {
+                            red.buscarUsuariosPorFiltro(palabraClave, true);
+                        } else if (tipoBusqueda == 2) {
+                            red.buscarUsuariosPorFiltro(palabraClave, false);
+                        } else {
+                            System.out.println("Opción de búsqueda no válida.");
+                        }
                         break;
 
                     case -1:
@@ -271,23 +269,21 @@ public class MainRedSocialDEMO{
                         }
                         break;
                     case 3:
-//                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
-//                        System.out.println("1. Buscar por Formación/Aptitud");
-//                        System.out.println("2. Buscar por Título");
-//                        int tipoBusqueda = sc.nextInt();
-//
-//                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
-//                        String palabraClave = sc.next();
-//
-//                        GrafoMatrizAdyacencia miGrafo = (GrafoMatrizAdyacencia) red; //??
-//
-//                        if (tipoBusqueda == 1) {
-//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
-//                        } else if (tipoBusqueda == 2) {
-//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
-//                        } else {
-//                            System.out.println("Opción de búsqueda no válida.");
-//                        }
+                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
+                        System.out.println("1. Buscar por Formación/Aptitud");
+                        System.out.println("2. Buscar por Título");
+                        int tipoBusqueda = sc.nextInt();
+
+                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+                        String palabraClave = sc.next();
+
+                        if (tipoBusqueda == 1) {
+                            red.buscarUsuariosPorFiltro(palabraClave, true);
+                        } else if (tipoBusqueda == 2) {
+                            red.buscarUsuariosPorFiltro(palabraClave, false);
+                        } else {
+                            System.out.println("Opción de búsqueda no válida.");
+                        }
                         break;
 
                 }
