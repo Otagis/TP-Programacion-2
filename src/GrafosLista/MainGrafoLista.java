@@ -70,7 +70,7 @@ public class MainGrafoLista {
         red.insertarArista(e1, ramiro);
 
         red.mostrarGrafo();
-        red.recorridoBFS(a1);
+        red.recorridoBFS(f1);
         red.recorridoDFS(a1);
 
         red.existeVertice(a1);

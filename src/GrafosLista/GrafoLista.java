@@ -329,4 +329,51 @@ public class GrafoLista implements Igrafo {
 
     }
 
+    public void sugerencias(Usuario inicio){
+        limpiarVisitados();
+        NodoVertice verticeInicio = buscarVertice(inicio);
+
+        if (verticeInicio == null) {
+            System.out.println("El vértice inicial no existe.");
+            return;
+        }
+
+        verticeInicio.visitado = true;
+
+        NodoAdyacente ady = verticeInicio.adyacentes;
+
+        while (ady != null){
+            NodoVertice vecino = buscarVertice(ady.dato);
+
+            if (vecino != null){
+                vecino.visitado = true;
+            }
+
+            ady = ady.siguiente;
+        }
+
+        ady = verticeInicio.adyacentes;
+
+        while (ady != null){
+            NodoVertice vecino = buscarVertice(ady.dato);
+
+            if (vecino != null){
+                NodoAdyacente amiDeAmi = vecino.adyacentes;
+
+                while (amiDeAmi != null){
+                    NodoVertice cand = buscarVertice(amiDeAmi.dato);
+
+                    if (cand != null && !cand.visitado){
+                        System.out.println(cand.dato.nombre);
+                        cand.visitado = true;
+                    }
+
+                    amiDeAmi = amiDeAmi.siguiente;
+                }
+            }
+
+            ady = ady.siguiente;
+        }
+    }
+
 }

@@ -93,7 +93,7 @@ public class MainRedSocialDEMO{
                             System.out.println();
                             System.out.println("Se ha iniciado sesion correctamente.");
                             System.out.println();
-                            System.out.println("Bienvenido" + sesionActual.getNombre());
+                            System.out.println("Bienvenido " + sesionActual.getNombre());
                             iniciarsesion = true;
                         }else {
                             System.out.println("No se ha iniciado sesion correctamente.");
@@ -110,7 +110,7 @@ public class MainRedSocialDEMO{
                         System.out.print("Ingrese su nombre: ");
                         nombre = sc.next();
                         System.out.println();
-                        System.out.print("Ingrese su contrasena");
+                        System.out.print("Ingrese su ID: ");
                         contrasena = sc.next();
                         System.out.println();
                         System.out.println("Usted es un empleador?");
@@ -167,7 +167,7 @@ public class MainRedSocialDEMO{
                 System.out.println("2. Ver puestos para la propuesta");
                 System.out.println("3. Buscar usuarios");
                 System.out.println();
-                System.out.println("-1  Para cerrar sesion correctamente");
+                System.out.println("-1  Para cerrar sesion");
 
                 opcion = sc.nextInt();
                 switch (opcion) {
@@ -237,19 +237,19 @@ public class MainRedSocialDEMO{
             }
             else {
                 System.out.println("Gestion de cuenta de empleado: ");
-                System.out.println("1  Para cerrar sesion correctamente");
-                System.out.println("2. Para ingresar sus formaciones");
-                System.out.println("3. Para buscar usuarios");
-                System.out.println("4. Ver propuestas y anotarse");
-                System.out.println("5. Modificar perfil");
-
+                System.out.println("1. Para ingresar sus formaciones");
+                System.out.println("2. Para buscar usuarios");
+                System.out.println("3. Ver propuestas y anotarse");
+                System.out.println("4. Modificar perfil");
+                System.out.println();
+                System.out.println("-1  Para cerrar sesion");
                 opcion = sc.nextInt();
                 switch (opcion) {
-                    case 1:
+                    case -1:
                         System.out.println("cerrando sesion correctamente.");
                         iniciarsesion = false;
                         break;
-                    case 2:
+                    case 1:
                         System.out.println("Ingrese sus Formaciones limite 10.");
                         Conjunto Formaciones = new Conjunto(10);
 
@@ -268,10 +268,11 @@ public class MainRedSocialDEMO{
                             }
                         }
                         break;
-                    case 3:
+                    case 2:
                         System.out.println("¿Qué tipo de búsqueda desea realizar?");
                         System.out.println("1. Buscar por Formación/Aptitud");
                         System.out.println("2. Buscar por Título");
+                        System.out.println("3. Mostrar recomendaciones");
                         int tipoBusqueda = sc.nextInt();
 
                         System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
@@ -281,6 +282,8 @@ public class MainRedSocialDEMO{
                             red.buscarUsuariosPorFiltro(palabraClave, true);
                         } else if (tipoBusqueda == 2) {
                             red.buscarUsuariosPorFiltro(palabraClave, false);
+                        } else if (tipoBusqueda == 3) {
+                            red.sugerencias(sesionActual);
                         } else {
                             System.out.println("Opción de búsqueda no válida.");
                         }

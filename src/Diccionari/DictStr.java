@@ -37,8 +37,7 @@ public class DictStr implements IDictStr{
     @Override
     public boolean insertar(String clave, Usuario valor) {
         if (estaLleno()){
-            System.out.println("Esta lleno.");
-            return false;
+            agrandar();
         }
         if (existe(clave) == -1){
             datosDiccionario[cantidad] = new DatoStr(clave, valor);
@@ -136,5 +135,15 @@ public class DictStr implements IDictStr{
         else {
             System.out.println("No existen elementos en el diccionario");
         }
+    }
+
+    private void agrandar(){
+        int nuevaDimension = dimension + 10;
+        DatoStr[] nuevoArreglo = new DatoStr[nuevaDimension];
+        for (int i = 0; i < cantidad; i++){
+            nuevoArreglo[i] = datosDiccionario[i];
+        }
+        datosDiccionario = nuevoArreglo;
+        dimension = nuevaDimension;
     }
 }
