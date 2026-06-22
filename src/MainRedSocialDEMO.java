@@ -171,9 +171,7 @@ public class MainRedSocialDEMO{
                         System.out.println("Por favor, ingrese la cantidad maxima de solicitudes de empleo que desea habilitar:");
                         maximo = sc.nextInt();
 
-
                         GestionEmpleo.inicializarCola(maximo);
-
 
                         System.out.println("Propuesta iniciada con límite de " + maximo + " postulantes.");
                         break;
@@ -282,56 +280,27 @@ public class MainRedSocialDEMO{
                         }
                         break;
                     case 4:
+                        if (GestionEmpleo.existeOferta()) {
+                            System.out.println("¡Se ha encontrado una propuesta de empleo activa!");
+                            System.out.print("Ingrese su nombre para registrar su postulación: ");
 
+                            String nombrePostulante = sc.next();
+
+                            boolean agregado = GestionEmpleo.agregarPostulante(nombrePostulante);
+
+                            if (agregado) {
+                                System.out.println("¡Postulación registrada con éxito en la propuesta activa!");
+                            } else {
+                                System.out.println("No se pudo registrar. La propuesta alcanzó el límite máximo de solicitudes.");
+                            }
+                        } else {
+
+                            System.out.println("Actualmente no hay ninguna propuesta de empleo disponible.");
+                            System.out.println("Por favor, intente más tarde cuando un empleador habilite una oferta.");
+                        }
+                        break;
 
                     case 5:
-                        DeshacerCambios gestorCambios = new DeshacerCambios();
-                        System.out.println("=========================");
-                        System.out.println("1. Modificar Nombre");
-                        System.out.println("2. Modificar Formaciones");
-                        System.out.println("3. Deshacer último cambio de Nombre");
-                        System.out.println("4. Deshacer último cambio de Formaciones");
-                        System.out.println("5. Salir");
-                        System.out.print("Seleccione una opción: ");
-
-                        int opc = sc.nextInt();
-
-                        switch (opc) {
-                            case 1:
-                                System.out.print("Ingrese el nuevo nombre: ");
-                                String nuevoNombre = sc.nextLine();
-
-                                gestorCambios.modificarNombre(usuario, nuevoNombre);
-                                System.out.println("¡Nombre modificado con éxito!");
-                                break;
-
-                            case 2:
-                                System.out.println("Creando un nuevo conjunto de formaciones...");
-                                Conjunto nuevasFormaciones = new Conjunto(6);
-                                gestorCambios.modificarFormaciones(usuario, nuevasFormaciones);
-                                System.out.println("¡Formaciones modificadas con éxito!");
-                                break;
-
-                            case 3:
-                                System.out.println("Intentando deshacer nombre...");
-                                gestorCambios.deshacerNombre(usuario);
-                                break;
-
-                            case 4:
-                                System.out.println("Intentando deshacer formaciones...");
-                                gestorCambios.deshacerFormaciones(usuario);
-                                break;
-
-                            case 5:
-                                System.out.println("Saliendo del programa del perfil.");
-                                break;
-
-                            default:
-                                System.out.println("Opción inválida. Intente de nuevo.");
-                                break;
-
-
-
 
                 }
 
