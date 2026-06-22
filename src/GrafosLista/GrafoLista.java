@@ -73,7 +73,7 @@ public class GrafoLista implements Igrafo {
             return;
         }
 
-        NodoAdyacente nuevo = new NodoAdyacente<>(destino);
+        NodoAdyacente nuevo = new NodoAdyacente(destino);
 
         if (verticeOrigen.adyacentes == null) {
             verticeOrigen.adyacentes = nuevo;
@@ -278,5 +278,16 @@ public class GrafoLista implements Igrafo {
         System.out.println();
     }
 
+    @Override
+    public void buscarUsuariosPorFiltro(String criterio, boolean esPorFormacion){
+        System.out.println("--- RESULTADOS DE BÚSQUEDA ---");
+        boolean encontrado = false;
+
+        NodoVertice aux = primero;
+
+        while (aux != null){
+            Usuario usr = aux.dato;
+        }
+    }
 
 }

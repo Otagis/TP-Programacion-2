@@ -20,4 +20,6 @@ public interface Igrafo {
         void recorridoDFS(Usuario inicio);
 
         void recorridoBFS(Usuario inicio);
+
+        void buscarUsuariosPorFiltro(String criterio, boolean esPorformacion);
 }

@@ -1,6 +1,6 @@
 package GrafosLista;
 
-public class NodoAdyacente<T> {
+public class NodoAdyacente {
 
     Usuario dato;
     NodoAdyacente siguiente;
