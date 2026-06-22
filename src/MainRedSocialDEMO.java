@@ -1,15 +1,15 @@
 import Conjuntos.Conjunto;
 import Diccionari.DictStr;
-import Grafos.GrafoMatrizAdyacencia;
-import Grafos.IGrafo;
-import Grafos.Usuario;
+import GrafosLista.GrafoLista;
+import GrafosLista.Igrafo;
+import GrafosLista.Usuario;
 import ColaCircular.GestionEmpleo;
 import java.util.Scanner;
 
 public class MainRedSocialDEMO{
     public static void main(String[] args) {
         DictStr instant = new DictStr(3);
-        IGrafo<Usuario> red = new GrafoMatrizAdyacencia(3, false);
+        Igrafo red = new GrafoLista(false);
 
         String nombre;
         String contrasena;
@@ -58,18 +58,27 @@ public class MainRedSocialDEMO{
         String lectura = "S";
 
 
-        System.out.println("Hola bienvenido a [INSERTAR_NOMBRE_DE_RED_SOCIAL_GENERICA].");
-        System.out.println();
-
         do {
+
+            System.out.println("  _____                             \n" +
+                    " |  __ \\                            \n" +
+                    " | |__) |___  ___ _ __ _____      __\n" +
+                    " |  _  // _ \\/ __| '__/ _ \\ \\ /\\ / /\n" +
+                    " | | \\ \\  __/ (__| | |  __/\\ V  V / \n" +
+                    " |_|  \\_\\___|\\___|_|  \\___| \\_/\\_(_)");
+            System.out.println();
+            System.out.println("Red social de reclutamiento de profesionales.");
+
             if (!iniciarsesion){
                 System.out.println("-----------------------------------------------------------------------------");
-                System.out.println("---------------------------------LOG IN--------------------------------------");
+                System.out.println("-------------------------------PAGINA PRINCIPAL------------------------------");
                 System.out.println("-----------------------------------------------------------------------------");
-                System.out.println(" ");
-                System.out.println(" 1. Ingresar");
+                System.out.println();
+                System.out.println(" 1. Iniciar sesion");
                 System.out.println(" 2. Registrarse");
-                System.out.println("-1. Cerrar sesion");
+                System.out.println(" 3. Informacion");
+                System.out.println();
+                System.out.println(" -1. Salir");
 
 
                 opcion = sc.nextInt();
@@ -97,13 +106,13 @@ public class MainRedSocialDEMO{
                         System.out.println("Si usted es un usuario corriente, ingrese solo sus datos");
                         System.out.println("Si pertenece a una empresa y desea registrarse para usar las funciones de empleador, ingrese el codigo de empleador.");
                         System.out.println("La opcion aparecera despues de ingresar nombre y contrasena");
-                        System.out.println(" ");
+                        System.out.println();
                         System.out.print("Ingrese su nombre: ");
-                        nombre = sc.nextLine();
-                        System.out.println(" ");
+                        nombre = sc.next();
+                        System.out.println();
                         System.out.print("Ingrese su contrasena");
-                        contrasena = sc.nextLine();
-                        System.out.println(" ");
+                        contrasena = sc.next();
+                        System.out.println();
                         System.out.println("Usted es un empleador?");
                         System.out.println("1. Si");
                         System.out.println("2. No");
@@ -153,20 +162,16 @@ public class MainRedSocialDEMO{
                 System.out.println("====================================================================================");
                 System.out.println("========================Gestion de cuenta de empleador==============================");
                 System.out.println("====================================================================================");
-                System.out.println(" ");
-                System.out.println("1  Para cerrar sesion correctamente");
-                System.out.println("2. Agregar propuesta");
-                System.out.println("3. Ver puestos para la propuesta");
-                System.out.println("4. Buscar usuarios");
+                System.out.println();
+                System.out.println("1. Agregar propuesta");
+                System.out.println("2. Ver puestos para la propuesta");
+                System.out.println("3. Buscar usuarios");
+                System.out.println();
+                System.out.println("-1  Para cerrar sesion correctamente");
 
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
-                        System.out.println("Cerrando sesion correctamente.");
-                        iniciarsesion = false;
-                        break;
-
-                    case 2:
                         System.out.println("Por favor, ingrese la cantidad maxima de solicitudes de empleo que desea habilitar:");
                         maximo = sc.nextInt();
 
@@ -177,7 +182,7 @@ public class MainRedSocialDEMO{
                         System.out.println("Propuesta iniciada con límite de " + maximo + " postulantes.");
                         break;
 
-                    case 3:
+                    case 2:
                         if (!GestionEmpleo.existeOferta()) {
                             System.out.println("Error: Primero debe crear una propuesta en la opción 1.");
                             break;
@@ -202,26 +207,30 @@ public class MainRedSocialDEMO{
                         }
                         break;
 
-                    case 4:
-                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
-                        System.out.println("1. Buscar por Formación/Aptitud");
-                        System.out.println("2. Buscar por Título");
-                        int tipoBusqueda = sc.nextInt();
-
-                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
-                        String palabraClave = sc.next();
-
-                        GrafoMatrizAdyacencia miGrafo = (GrafoMatrizAdyacencia) red;
-
-                        if (tipoBusqueda == 1) {
-                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
-                        } else if (tipoBusqueda == 2) {
-                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
-                        } else {
-                            System.out.println("Opción de búsqueda no válida.");
-                        }
+                    case 3:
+//                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
+//                        System.out.println("1. Buscar por Formación/Aptitud");
+//                        System.out.println("2. Buscar por Título");
+//                        int tipoBusqueda = sc.nextInt();
+//
+//                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+//                        String palabraClave = sc.next();
+//
+//                        GrafoLista miGrafo = (GrafoLista) red;
+//
+//                        if (tipoBusqueda == 1) {
+//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
+//                        } else if (tipoBusqueda == 2) {
+//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
+//                        } else {
+//                            System.out.println("Opción de búsqueda no válida.");
+//                        }
                         break;
 
+                    case -1:
+                        System.out.println("Cerrando sesion correctamente.");
+                        iniciarsesion = false;
+                        break;
 
                     default:
                         System.out.println("opcion no valida.");
@@ -262,23 +271,23 @@ public class MainRedSocialDEMO{
                         }
                         break;
                     case 3:
-                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
-                        System.out.println("1. Buscar por Formación/Aptitud");
-                        System.out.println("2. Buscar por Título");
-                        int tipoBusqueda = sc.nextInt();
-
-                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
-                        String palabraClave = sc.next();
-
-                        GrafoMatrizAdyacencia miGrafo = (GrafoMatrizAdyacencia) red;
-
-                        if (tipoBusqueda == 1) {
-                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
-                        } else if (tipoBusqueda == 2) {
-                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
-                        } else {
-                            System.out.println("Opción de búsqueda no válida.");
-                        }
+//                        System.out.println("¿Qué tipo de búsqueda desea realizar?");
+//                        System.out.println("1. Buscar por Formación/Aptitud");
+//                        System.out.println("2. Buscar por Título");
+//                        int tipoBusqueda = sc.nextInt();
+//
+//                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+//                        String palabraClave = sc.next();
+//
+//                        GrafoMatrizAdyacencia miGrafo = (GrafoMatrizAdyacencia) red; //??
+//
+//                        if (tipoBusqueda == 1) {
+//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, true);
+//                        } else if (tipoBusqueda == 2) {
+//                            miGrafo.buscarUsuariosPorFiltro(palabraClave, false);
+//                        } else {
+//                            System.out.println("Opción de búsqueda no válida.");
+//                        }
                         break;
 
                 }

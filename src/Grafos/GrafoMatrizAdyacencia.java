@@ -1,5 +1,7 @@
 package Grafos;
 
+import GrafosLista.Usuario;
+
 public class GrafoMatrizAdyacencia implements IGrafo {
 
     private Usuario[] vertices;

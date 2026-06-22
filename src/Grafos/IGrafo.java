@@ -1,6 +1,8 @@
 package Grafos;
 
-public interface IGrafo <T> {
+import GrafosLista.Usuario;
+
+public interface IGrafo {
 
         void insertarVertice(Usuario vertice);
 

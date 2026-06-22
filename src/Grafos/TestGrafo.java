@@ -3,7 +3,7 @@ package Grafos;
 public class TestGrafo {
     public static void main(String[] args) {
 
-        IGrafo<Usuario> grafo = new GrafoMatrizAdyacencia(6, false);
+        IGrafo grafo = new GrafoMatrizAdyacencia(6, false);
 
 //        Usuario v1 = new Usuario("p1", "aaa");
 //        Usuario v2 = new Usuario("p2", "bbb");

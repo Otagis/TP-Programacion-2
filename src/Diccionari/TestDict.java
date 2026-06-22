@@ -1,5 +1,4 @@
 package Diccionari;
-import Grafos.Usuario;
 
 public class TestDict {
     static void main() {

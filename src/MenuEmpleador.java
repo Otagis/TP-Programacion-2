@@ -1,5 +1,5 @@
 import ColaCircular.GestionEmpleo;
-import Grafos.Usuario;
+import GrafosLista.Usuario;
 
 import java.util.Scanner;
 public class MenuEmpleador {

@@ -1,0 +1,282 @@
+package GrafosLista;
+
+public class GrafoLista implements Igrafo {
+
+    private NodoVertice primero;
+    private boolean dirigido;
+
+    public GrafoLista(boolean dirigido) {
+        this.primero = null;
+        this.dirigido = dirigido;
+    }
+
+    @Override
+    public void insertarVertice(Usuario dato) {
+        if (existeVertice(dato)) {
+            return;
+        }
+
+        NodoVertice nuevo = new NodoVertice(dato);
+
+        if (primero == null) {
+            primero = nuevo;
+        } else {
+            NodoVertice aux = primero;
+
+            while (aux.siguiente != null) {
+                aux = aux.siguiente;
+            }
+
+            aux.siguiente = nuevo;
+        }
+    }
+
+    @Override
+    public boolean existeVertice(Usuario dato) {
+        return buscarVertice(dato) != null;
+    }
+
+    private NodoVertice buscarVertice(Usuario dato) {
+        NodoVertice aux = primero;
+
+        while (aux != null) {
+            if (aux.dato.equals(dato)) {
+                return aux;
+            }
+
+            aux = aux.siguiente;
+        }
+
+        return null;
+    }
+
+    @Override
+    public void insertarArista(Usuario origen, Usuario destino) {
+        insertarVertice(origen);
+        insertarVertice(destino);
+
+        agregarAdyacente(origen, destino);
+
+        if (!dirigido) {
+            agregarAdyacente(destino, origen);
+        }
+    }
+
+    private void agregarAdyacente(Usuario origen, Usuario destino) {
+        NodoVertice verticeOrigen = buscarVertice(origen);
+
+        if (verticeOrigen == null) {
+            return;
+        }
+
+        if (existeArista(origen, destino)) {
+            return;
+        }
+
+        NodoAdyacente nuevo = new NodoAdyacente<>(destino);
+
+        if (verticeOrigen.adyacentes == null) {
+            verticeOrigen.adyacentes = nuevo;
+        } else {
+            NodoAdyacente aux = verticeOrigen.adyacentes;
+
+            while (aux.siguiente != null) {
+                aux = aux.siguiente;
+            }
+
+            aux.siguiente = nuevo;
+        }
+    }
+
+    @Override
+    public boolean existeArista(Usuario origen, Usuario destino) {
+        NodoVertice verticeOrigen = buscarVertice(origen);
+
+        if (verticeOrigen == null) {
+            return false;
+        }
+
+        NodoAdyacente aux = verticeOrigen.adyacentes;
+
+        while (aux != null) {
+            if (aux.dato.equals(destino)) {
+                return true;
+            }
+
+            aux = aux.siguiente;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void eliminarArista(Usuario origen, Usuario destino) {
+        quitarAdyacente(origen, destino);
+
+        if (!dirigido) {
+            quitarAdyacente(destino, origen);
+        }
+    }
+
+    private void quitarAdyacente(Usuario origen, Usuario destino) {
+        NodoVertice verticeOrigen = buscarVertice(origen);
+
+        if (verticeOrigen == null || verticeOrigen.adyacentes == null) {
+            return;
+        }
+
+        NodoAdyacente actual = verticeOrigen.adyacentes;
+        NodoAdyacente anterior = null;
+
+        while (actual != null) {
+            if (actual.dato.equals(destino)) {
+                if (anterior == null) {
+                    verticeOrigen.adyacentes = actual.siguiente;
+                } else {
+                    anterior.siguiente = actual.siguiente;
+                }
+                return;
+            }
+
+            anterior = actual;
+            actual = actual.siguiente;
+        }
+    }
+
+    @Override
+    public void eliminarVertice(Usuario dato) {
+        if (primero == null) {
+            return;
+        }
+
+        NodoVertice actual = primero;
+        NodoVertice anterior = null;
+
+        while (actual != null) {
+            if (actual.dato.equals(dato)) {
+                if (anterior == null) {
+                    primero = actual.siguiente;
+                } else {
+                    anterior.siguiente = actual.siguiente;
+                }
+
+                eliminarReferencias(dato);
+                return;
+            }
+
+            anterior = actual;
+            actual = actual.siguiente;
+        }
+    }
+
+    private void eliminarReferencias(Usuario dato) {
+        NodoVertice aux = primero;
+
+        while (aux != null) {
+            quitarAdyacente(aux.dato, dato);
+            aux = aux.siguiente;
+        }
+    }
+
+    @Override
+    public void mostrarGrafo() {
+        NodoVertice aux = primero;
+
+        while (aux != null) {
+            System.out.print(aux.dato.nombre + " -> ");
+
+            NodoAdyacente ady = aux.adyacentes;
+
+            while (ady != null) {
+                System.out.print(ady.dato.nombre + " ");
+                ady = ady.siguiente;
+            }
+
+            System.out.println();
+            aux = aux.siguiente;
+        }
+    }
+
+    private void limpiarVisitados() {
+        NodoVertice aux = primero;
+
+        while (aux != null) {
+            aux.visitado = false;
+            aux = aux.siguiente;
+        }
+    }
+
+    @Override
+    public void recorridoDFS(Usuario inicio) {
+        limpiarVisitados();
+
+        NodoVertice verticeInicio = buscarVertice(inicio);
+
+        if (verticeInicio == null) {
+            System.out.println("El vértice inicial no existe.");
+            return;
+        }
+
+        System.out.println("Recorrido DFS:");
+        dfsRecursivo(verticeInicio);
+        System.out.println();
+    }
+
+    private void dfsRecursivo(NodoVertice vertice) {
+        vertice.visitado = true;
+        System.out.print(vertice.dato.nombre + " ");
+
+        NodoAdyacente ady = vertice.adyacentes;
+
+        while (ady != null) {
+            NodoVertice vecino = buscarVertice(ady.dato);
+
+            if (vecino != null && !vecino.visitado) {
+                dfsRecursivo(vecino);
+            }
+
+            ady = ady.siguiente;
+        }
+    }
+
+    @Override
+    public void recorridoBFS(Usuario inicio) {
+        limpiarVisitados();
+
+        NodoVertice verticeInicio = buscarVertice(inicio);
+
+        if (verticeInicio == null) {
+            System.out.println("El vértice inicial no existe.");
+            return;
+        }
+
+        ColaPropia cola = new ColaPropia();
+
+        verticeInicio.visitado = true;
+        cola.encolar(verticeInicio);
+
+        System.out.println("Recorrido BFS:");
+
+        while (!cola.estaVacia()) {
+            NodoVertice actual = cola.desencolar();
+            System.out.print(actual.dato.nombre + " ");
+
+            NodoAdyacente ady = actual.adyacentes;
+
+            while (ady != null) {
+                NodoVertice vecino = buscarVertice(ady.dato);
+
+                if (vecino != null && !vecino.visitado) {
+                    vecino.visitado = true;
+                    cola.encolar(vecino);
+                }
+
+                ady = ady.siguiente;
+            }
+        }
+
+        System.out.println();
+    }
+
+
+}

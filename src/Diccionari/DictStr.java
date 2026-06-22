@@ -1,6 +1,6 @@
 package Diccionari;
 
-import Grafos.Usuario;
+import GrafosLista.Usuario;
 
 import java.util.Objects;
 
