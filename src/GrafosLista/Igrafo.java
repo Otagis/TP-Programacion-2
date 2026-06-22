@@ -23,5 +23,7 @@ public interface Igrafo {
 
         void buscarUsuariosPorFiltro(String criterio, boolean esPorformacion);
 
-        void sugerencias(Usuario incio);
+        void sugerencias(Usuario inicio);
+
+        Usuario buscarPorNombre(String nomb);
 }

@@ -166,6 +166,9 @@ public class MainRedSocialDEMO{
                 System.out.println("1. Agregar propuesta");
                 System.out.println("2. Ver puestos para la propuesta");
                 System.out.println("3. Buscar usuarios");
+                System.out.println("4. Agregar amigo");
+                System.out.println("5. Eliminar amigo");
+                System.out.println("6. Ver amigos");
                 System.out.println();
                 System.out.println("-1  Para cerrar sesion");
 
@@ -225,9 +228,27 @@ public class MainRedSocialDEMO{
                         }
                         break;
 
+                    case 4:
+                        System.out.println("Ingrese el nombre del usuario al que quiere agregar como amigo: ");
+                        System.out.println();
+                        String nomb = sc.next();
+                        Usuario agregar = red.buscarPorNombre(nomb);
+                        if (agregar != null && !red.existeArista(sesionActual, agregar)) {
+                            red.insertarArista(sesionActual, agregar);
+                            System.out.println("Se ha agregado al usuario: " + agregar.getNombre());
+                        }
+                        else if (red.existeArista(sesionActual, agregar)){
+                            System.out.println("Ya son amigos");
+                        }
+                        else {
+                            System.out.println("No se ha encontrado al usuario");
+                        }
+                        break;
+
                     case -1:
                         System.out.println("Cerrando sesion correctamente.");
                         iniciarsesion = false;
+                        opcion = 0;
                         break;
 
                     default:
@@ -236,11 +257,17 @@ public class MainRedSocialDEMO{
                 }
             }
             else {
-                System.out.println("Gestion de cuenta de empleado: ");
+                System.out.println("====================================================================================");
+                System.out.println("=========================Gestion de cuenta de empleado==============================");
+                System.out.println("====================================================================================");
+                System.out.println();
                 System.out.println("1. Para ingresar sus formaciones");
                 System.out.println("2. Para buscar usuarios");
                 System.out.println("3. Ver propuestas y anotarse");
                 System.out.println("4. Modificar perfil");
+                System.out.println("5. Agregar amigo");
+                System.out.println("6. Eliminar amigo");
+                System.out.println("7. Ver amigos");
                 System.out.println();
                 System.out.println("-1  Para cerrar sesion");
                 opcion = sc.nextInt();
@@ -248,6 +275,7 @@ public class MainRedSocialDEMO{
                     case -1:
                         System.out.println("cerrando sesion correctamente.");
                         iniciarsesion = false;
+                        opcion = 0;
                         break;
                     case 1:
                         System.out.println("Ingrese sus Formaciones limite 10.");
@@ -270,17 +298,22 @@ public class MainRedSocialDEMO{
                         break;
                     case 2:
                         System.out.println("¿Qué tipo de búsqueda desea realizar?");
+                        System.out.println();
                         System.out.println("1. Buscar por Formación/Aptitud");
                         System.out.println("2. Buscar por Título");
                         System.out.println("3. Mostrar recomendaciones");
+                        System.out.println("4. Buscar por nombre");
+                        System.out.println();
                         int tipoBusqueda = sc.nextInt();
-
-                        System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
-                        String palabraClave = sc.next();
+                        String palabraClave;
 
                         if (tipoBusqueda == 1) {
+                            System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+                            palabraClave = sc.next();
                             red.buscarUsuariosPorFiltro(palabraClave, true);
                         } else if (tipoBusqueda == 2) {
+                            System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+                            palabraClave = sc.next();
                             red.buscarUsuariosPorFiltro(palabraClave, false);
                         } else if (tipoBusqueda == 3) {
                             red.sugerencias(sesionActual);
@@ -288,7 +321,34 @@ public class MainRedSocialDEMO{
                             System.out.println("Opción de búsqueda no válida.");
                         }
                         break;
+                    case 3:
+                        break;
 
+                    case 4:
+                        break;
+
+                    case 5:
+                        System.out.println("Ingrese el nombre del usuario al que quiere agregar como amigo: ");
+                        System.out.println();
+                        String nomb = sc.next();
+                        Usuario agregar = red.buscarPorNombre(nomb);
+                        if (agregar != null && !red.existeArista(sesionActual, agregar)) {
+                            red.insertarArista(sesionActual, agregar);
+                            System.out.println("Se ha agregado al usuario: " + agregar.getNombre());
+                        }
+                        else if (red.existeArista(sesionActual, agregar)){
+                            System.out.println("Ya son amigos");
+                        }
+                        else {
+                            System.out.println("No se ha encontrado al usuario");
+                        }
+                        break;
+
+                    case 6:
+                        break;
+
+                    case 7:
+                        break;
                 }
 
             }

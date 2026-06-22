@@ -293,20 +293,12 @@ public class GrafoLista implements Igrafo {
 
                 if (esPorFormacion) {
                     if (usr.getFormaciones() != null) {
-//                        String formacionesTexto = usr.getFormaciones().toString().toLowerCase();
-//                        if (formacionesTexto.contains(criterio.toLowerCase())) {
-//                            cumpleCondicion = true;
-//                        }
                         if (usr.formaciones.pertenece(criterio) != -1){
                             cumpleCondicion = true;
                         }
                     }
                 } else {
                     if (usr.getTitulo() != null) {
-//                        String tituloTexto = usr.getTitulo().toString().toLowerCase();
-//                        if (tituloTexto.contains(criterio.toLowerCase())) {
-//                            cumpleCondicion = true;
-//                        }
                         if (usr.titulo.pertenece(criterio) != -1){
                             cumpleCondicion = true;
                         }
@@ -327,6 +319,19 @@ public class GrafoLista implements Igrafo {
             System.out.println("No se encontraron usuarios con el criterio: " + criterio);
         }
 
+    }
+
+    public Usuario buscarPorNombre(String nomb){
+        NodoVertice aux = primero;
+
+        while (aux != null) {
+            if (aux.dato.getNombre().equalsIgnoreCase(nomb)) {
+                return aux.dato;
+            }
+
+            aux = aux.siguiente;
+        }
+        return null;
     }
 
     public void sugerencias(Usuario inicio){
