@@ -21,7 +21,7 @@ public class Pila implements IPila {
     public String desapilar() {
         if (pilaVacia()) {
             System.out.println("No hay elementos en la pila ");
-            return " ";
+            return null;
         }
         else {
             String elementoDesapilado = datos[tope];

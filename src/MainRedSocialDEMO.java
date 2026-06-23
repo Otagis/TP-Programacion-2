@@ -369,6 +369,53 @@ public class MainRedSocialDEMO{
                         break;
 
                     case 4:
+                        System.out.println("1- modifcar nombre" +
+                                "2- modificar contraseña" +
+                                "3- RETROCEDER nombre" +
+                                "4- RETROCEDER contraseña"
+                        );
+
+                        opcion = sc.nextInt();
+                        switch (opcion) {
+                            case 1:
+                                System.out.println("ingrese su nuevo nombre: ");
+                                String nombre1 = sc.nextLine();
+                                sesionActual.getHistorialNombre().apilar(sesionActual.getNombre());
+                                sesionActual.setNombre(nombre1);
+                                System.out.println("nuevo nombre completo: " + nombre1);
+                                break;
+
+                            case 2:
+                                System.out.println("ingrese su nuevo nombre: ");
+                                String Contrasenia = sc.nextLine();
+                                sesionActual.getHistorialContraseña().apilar(sesionActual.getNombre());
+                                sesionActual.setContraseña(Contrasenia);
+                                System.out.println("nuevo contraseña completo: " + Contrasenia);
+                                break;
+
+                            case 3:
+                                String Viejonombre = sesionActual.getHistorialNombre().desapilar();
+                                if (Viejonombre != null) {
+                                    System.out.println("Viejonombre: " + Viejonombre);
+                                    sesionActual.setNombre(Viejonombre);
+                                }
+                                break;
+
+                            case 4:
+                                String ViejaContraseña = sesionActual.getHistorialNombre().desapilar();
+                                if (ViejaContraseña != null) {
+                                    System.out.println("Viejonombre: " + ViejaContraseña);
+                                    sesionActual.setContraseña(ViejaContraseña);
+                                }
+                                break;
+
+                                default:
+                                    System.out.println("opcion no valida");
+                                    break;
+
+
+                        }
+
                         break;
 
                     case 5:

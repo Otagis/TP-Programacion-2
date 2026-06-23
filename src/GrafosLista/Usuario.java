@@ -1,6 +1,7 @@
 package GrafosLista;
 
 import Conjuntos.Conjunto;
+import Pila.Pila;
 
 public class Usuario {
     String nombre;
@@ -8,6 +9,8 @@ public class Usuario {
     Boolean empleador;
     Conjunto formaciones;
     Conjunto titulo;
+    Pila historialNombre;
+    Pila historialContraseña;
 
     public Usuario(String nombre, String contraseña, Conjunto formaciones,  Boolean empleador,  Conjunto tintulo) {
         this.nombre = nombre;
@@ -15,6 +18,8 @@ public class Usuario {
         this.formaciones = formaciones;
         this.empleador = empleador;
         this.titulo =  tintulo;
+        this.historialNombre =  new Pila();
+        this.historialContraseña =  new Pila();
     }
 
     public String getNombre() {
@@ -41,6 +46,7 @@ public class Usuario {
 
     public void setFormaciones(Conjunto formaciones) {this.formaciones = formaciones;}
 
+    public Pila getHistorialNombre() {return historialNombre;}
 
-
+    public Pila getHistorialContraseña() {return historialContraseña;}
 }
