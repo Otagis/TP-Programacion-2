@@ -1,4 +1,4 @@
-package GrafosLista;
+package TDAS.GrafosLista;
 
 public class NodoCola {
 

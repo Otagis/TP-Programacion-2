@@ -1,6 +1,4 @@
-package GrafosLista;
-
-import java.util.List;
+package TDAS.GrafosLista;
 
 public interface Igrafo {
         void insertarVertice(Usuario dato);

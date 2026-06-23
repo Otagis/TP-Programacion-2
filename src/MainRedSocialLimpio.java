@@ -1,12 +1,13 @@
+import TDAS.ColaCircular.GestionEmpleo;
 import TDAS.Conjuntos.Conjunto;
 import TDAS.Diccionari.DictStr;
 import TDAS.GrafosLista.GrafoLista;
 import TDAS.GrafosLista.Igrafo;
 import TDAS.GrafosLista.Usuario;
-import TDAS.ColaCircular.GestionEmpleo;
+
 import java.util.Scanner;
 
-public class MainRedSocialDEMO{
+public class MainRedSocialLimpio {
     public static void main(String[] args) {
         DictStr instant = new DictStr(3);
         Igrafo red = new GrafoLista(false);
@@ -16,32 +17,6 @@ public class MainRedSocialDEMO{
         int opc_empleador = 0;
         int codigo_empleador = 137;
         int codigo;
-
-        Conjunto a = new Conjunto(3); //pim
-        Conjunto b = new Conjunto(3);
-        a.insertar("Python");
-        a.insertar("C#");
-        a.insertar("LOLCAT");
-        b.insertar("C++");
-        b.insertar("C");
-        b.insertar("Holy C");
-        Conjunto c = new Conjunto(3);
-        c.insertar("ingInf");
-
-        Usuario maxi = new Usuario("Maxi", "12345", new Conjunto(3),true,c);
-        Usuario bruno = new Usuario("Bruno", "kactus", a, false,c);
-        Usuario ramiro = new Usuario("Ramiro", "jhonson", b,false,c);
-
-        red.insertarVertice(maxi);
-        red.insertarVertice(bruno);
-        red.insertarVertice(ramiro);
-
-        instant.insertar(maxi.getContraseña(), maxi);
-        instant.insertar(bruno.getContraseña(), bruno);
-        instant.insertar(ramiro.getContraseña(), ramiro);
-
-        red.insertarArista(ramiro, bruno);
-        red.insertarArista(maxi, bruno);
 
         Scanner sc = new Scanner(System.in);
 
@@ -409,9 +384,9 @@ public class MainRedSocialDEMO{
                                 }
                                 break;
 
-                                default:
-                                    System.out.println("opcion no valida");
-                                    break;
+                            default:
+                                System.out.println("opcion no valida");
+                                break;
 
 
                         }

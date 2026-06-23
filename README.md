@@ -3,8 +3,8 @@
 ### Integrantes y Actividades
 
 - Maximiliano Agustin Fernandez: Clase Usuario, Identificacion Inmediata
-- Bruno Belasquez: Interaccion entre Conjuntos, Creacion de propuestas.
-- Ramiro Alaniz: Ingresar Formaciones en Conjuntos.
+- Bruno Belasquez: Interaccion entre TDAS.Conjuntos, Creacion de propuestas.
+- Ramiro Alaniz: Ingresar Formaciones en TDAS.Conjuntos.
 
 # Ecosistema de Red Social Profesional
 
@@ -13,7 +13,7 @@
 - Grafos
 - Cola
 - Cola Circular
-- Conjuntos
+- TDAS.Conjuntos
 - Diccionarios
 
 ### Funcionalidades

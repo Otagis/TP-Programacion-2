@@ -1,7 +1,7 @@
-package GrafosLista;
+package TDAS.GrafosLista;
 
-import Conjuntos.Conjunto;
-import Diccionari.DictStr;
+import TDAS.Conjuntos.Conjunto;
+import TDAS.Diccionari.DictStr;
 
 public class MainGrafoLista {
     public static void main(String[] args) {

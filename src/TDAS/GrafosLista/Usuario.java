@@ -1,7 +1,7 @@
-package GrafosLista;
+package TDAS.GrafosLista;
 
-import Conjuntos.Conjunto;
-import Pila.Pila;
+import TDAS.Conjuntos.Conjunto;
+import TDAS.Pila.Pila;
 
 public class Usuario {
     String nombre;
