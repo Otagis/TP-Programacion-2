@@ -205,7 +205,7 @@ public class GrafoLista implements Igrafo {
         }
         System.out.println("--------------------------------------");
 
-        System.out.println("Conexiones (AAristas) de: " + usuario.getNombre());
+        System.out.println("Amigos de: " + usuario.getNombre());
         NodoAdyacente nodoAdyacente = vertice.adyacentes;
 
         if (nodoAdyacente == null){
@@ -213,7 +213,7 @@ public class GrafoLista implements Igrafo {
             return;
         }
         while (nodoAdyacente != null) {
-            System.out.print(nodoAdyacente.dato.nombre + " -> ");
+            System.out.print(nodoAdyacente.dato.nombre + ",");
             nodoAdyacente = nodoAdyacente.siguiente;
         }
         System.out.println(" ");

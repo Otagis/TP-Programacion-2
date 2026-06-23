@@ -327,6 +327,9 @@ public class MainRedSocialDEMO{
                         System.out.println("2. Buscar por Título");
                         System.out.println("3. Mostrar recomendaciones");
                         System.out.println("4. Buscar por nombre");
+                        System.out.println("5. Agregar amigo");
+                        System.out.println("6. Eliminar de amigos");
+                        System.out.println("7. Mostrar amigos");
                         System.out.println();
                         int tipoBusqueda = sc.nextInt();
                         String palabraClave;
