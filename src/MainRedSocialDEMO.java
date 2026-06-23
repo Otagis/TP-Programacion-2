@@ -178,9 +178,7 @@ public class MainRedSocialDEMO{
                         System.out.println("Por favor, ingrese la cantidad maxima de solicitudes de empleo que desea habilitar:");
                         maximo = sc.nextInt();
 
-
                         GestionEmpleo.inicializarCola(maximo);
-
 
                         System.out.println("Propuesta iniciada con límite de " + maximo + " postulantes.");
                         break;
@@ -250,6 +248,7 @@ public class MainRedSocialDEMO{
                         System.out.println();
                         String nomb2 = sc.next();
                         Usuario eliminar = red.buscarPorNombre(nomb2);
+
                         if (eliminar != null && red.existeArista(sesionActual, eliminar)) {
                             red.eliminarArista(sesionActual, eliminar);
                             System.out.println("Se ha eliminado al usuario: " + eliminar.getNombre());
@@ -349,6 +348,24 @@ public class MainRedSocialDEMO{
                         }
                         break;
                     case 3:
+                        System.out.println("Buscar propuestas");
+                        if (!GestionEmpleo.existeOferta()) {
+                            System.out.println("Error: No hay ninguna propuesta laboral activa en este momento.");
+                            return;
+                        }
+
+                        System.out.println("=== Inscripción a Propuesta Laboral ===");
+                        System.out.print("Ingrese su nombre completo: ");
+                        nombre = sc.nextLine();
+
+                        boolean resultado = GestionEmpleo.agregarPostulante(nombre);
+
+                        if (resultado) {
+                            System.out.println("¡Inscripción exitosa! Has sido añadido a la lista de espera.");
+                        } else {
+                            System.out.println("No se pudo realizar la inscripción. La lista de postulantes está llena.");
+                        }
+
                         break;
 
                     case 4:
