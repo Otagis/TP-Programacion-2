@@ -25,5 +25,7 @@ public interface Igrafo {
 
         void sugerencias(Usuario inicio);
 
+        void mostrarAristadeUsuario(Usuario usuario);
+
         Usuario buscarPorNombre(String nomb);
 }

@@ -197,6 +197,30 @@ public class GrafoLista implements Igrafo {
         }
     }
 
+    public void mostrarAristadeUsuario(Usuario usuario) {
+        NodoVertice vertice = buscarVertice(usuario);
+
+        if (vertice == null) {
+            System.out.println("El usuario " + usuario.getNombre() + " no existe en el grafo.");
+        }
+        System.out.println("--------------------------------------");
+
+        System.out.println("Conexiones (AAristas) de: " + usuario.getNombre());
+        NodoAdyacente nodoAdyacente = vertice.adyacentes;
+
+        if (nodoAdyacente == null){
+            System.out.println("El usuario " + usuario.getNombre() + " no tiene amigos.");
+            return;
+        }
+        while (nodoAdyacente != null) {
+            System.out.print(nodoAdyacente.dato.nombre + " -> ");
+            nodoAdyacente = nodoAdyacente.siguiente;
+        }
+        System.out.println(" ");
+        System.out.println("--------------------------------------");
+
+    }
+
     private void limpiarVisitados() {
         NodoVertice aux = primero;
 

@@ -245,6 +245,30 @@ public class MainRedSocialDEMO{
                         }
                         break;
 
+                    case 5:
+                        System.out.println("Ingrese el nombre del usuario al que quiere eliminar como amigo: ");
+                        System.out.println();
+                        String nomb2 = sc.next();
+                        Usuario eliminar = red.buscarPorNombre(nomb2);
+                        if (eliminar != null && red.existeArista(sesionActual, eliminar)) {
+                            red.eliminarArista(sesionActual, eliminar);
+                            System.out.println("Se ha eliminado al usuario: " + eliminar.getNombre());
+                        }
+                        else if (!red.existeArista(sesionActual, eliminar)){
+                            System.out.println("No es amigo de " +eliminar.getNombre());
+                        }
+                        else {
+                            System.out.println("No se ha encontrado al usuario");
+                        }
+
+                        break;
+
+
+                    case 6:
+                        red.mostrarAristadeUsuario(sesionActual);
+                        break;
+
+
                     case -1:
                         System.out.println("Cerrando sesion correctamente.");
                         iniciarsesion = false;
@@ -345,9 +369,25 @@ public class MainRedSocialDEMO{
                         break;
 
                     case 6:
+                        System.out.println("Ingrese el nombre del usuario al que quiere eliminar como amigo: ");
+                        System.out.println();
+                        String nomb2 = sc.next();
+                        Usuario eliminar = red.buscarPorNombre(nomb2);
+                        if (eliminar != null && red.existeArista(sesionActual, eliminar)) {
+                            red.eliminarArista(sesionActual, eliminar);
+                            System.out.println("Se ha eliminado al usuario: " + eliminar.getNombre());
+                        }
+                        else if (!red.existeArista(sesionActual, eliminar)){
+                            System.out.println("No es amigo de " +eliminar.getNombre());
+                        }
+                        else {
+                            System.out.println("No se ha encontrado al usuario");
+                        }
+
                         break;
 
                     case 7:
+                        red.mostrarAristadeUsuario(sesionActual);
                         break;
                 }
 
