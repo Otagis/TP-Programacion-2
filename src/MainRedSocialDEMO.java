@@ -369,7 +369,7 @@ public class MainRedSocialDEMO{
                         break;
 
                     case 6:
-                        System.out.println("Ingrese el nombre del usuario al que quiere eliminar como amigo: ");
+                        System.out.println("Ingrese el nombre del usuario al que quiere eliminar de amigos: ");
                         System.out.println();
                         String nomb2 = sc.next();
                         Usuario eliminar = red.buscarPorNombre(nomb2);
