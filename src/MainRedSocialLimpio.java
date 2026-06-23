@@ -51,7 +51,6 @@ public class MainRedSocialLimpio {
                 System.out.println();
                 System.out.println(" 1. Iniciar sesion");
                 System.out.println(" 2. Registrarse");
-                System.out.println(" 3. Informacion");
                 System.out.println();
                 System.out.println(" -1. Salir");
 
