@@ -18,8 +18,8 @@ public class Usuario {
         this.formaciones = formaciones;
         this.empleador = empleador;
         this.titulo =  tintulo;
-        this.historialNombre =  new Pila();
-        this.historialContraseña =  new Pila();
+        this.historialNombre =  new Pila(10);
+        this.historialContraseña =  new Pila(10);
     }
 
     public String getNombre() {

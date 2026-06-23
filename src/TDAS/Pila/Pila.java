@@ -5,6 +5,14 @@ public class Pila implements IPila {
     private int tope;
     private int tamano;
 
+    public Pila(int tamano) {
+        this.tamano = tamano;
+        this.datos = new String[tamano];
+        this.tope = -1; // Comienza en -1 porque sumas 1 antes de insertar
+    }
+
+
+
     @Override
     public void apilar(String elemento) {
         if (pilaLllena()){

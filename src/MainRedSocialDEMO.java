@@ -211,7 +211,7 @@ public class MainRedSocialDEMO{
                     case 3:
                         System.out.println("¿Qué tipo de búsqueda desea realizar?");
                         System.out.println("1. Buscar por Formación/Aptitud");
-                        System.out.println("2. Buscar por Título");
+                        System.out.println("2. Buscar por nombre");
                         int tipoBusqueda = sc.nextInt();
 
                         System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
@@ -296,11 +296,13 @@ public class MainRedSocialDEMO{
                 opcion = sc.nextInt();
                 switch (opcion) {
                     case -1:
+
                         System.out.println("cerrando sesion correctamente.");
                         iniciarsesion = false;
                         opcion = 0;
                         break;
                     case 1:
+
                         System.out.println("Ingrese sus Formaciones limite 10.");
                         Conjunto Formaciones = new Conjunto(10);
 
@@ -319,16 +321,15 @@ public class MainRedSocialDEMO{
                             }
                         }
                         break;
+
                     case 2:
+
                         System.out.println("¿Qué tipo de búsqueda desea realizar?");
                         System.out.println();
                         System.out.println("1. Buscar por Formación/Aptitud");
-                        System.out.println("2. Buscar por Título");
+                        System.out.println("2. Buscar por nombre");
                         System.out.println("3. Mostrar recomendaciones");
-                        System.out.println("4. Buscar por nombre");
-                        System.out.println("5. Agregar amigo");
-                        System.out.println("6. Eliminar de amigos");
-                        System.out.println("7. Mostrar amigos");
+
                         System.out.println();
                         int tipoBusqueda = sc.nextInt();
                         String palabraClave;
@@ -338,7 +339,7 @@ public class MainRedSocialDEMO{
                             palabraClave = sc.next();
                             red.buscarUsuariosPorFiltro(palabraClave, true);
                         } else if (tipoBusqueda == 2) {
-                            System.out.print("Ingrese la palabra clave exacta a buscar (Ej: Python, ingInf): ");
+                            System.out.println("Ingrese el nombre de la persona que desea buscar:");
                             palabraClave = sc.next();
                             red.buscarUsuariosPorFiltro(palabraClave, false);
                         } else if (tipoBusqueda == 3) {
@@ -347,6 +348,7 @@ public class MainRedSocialDEMO{
                             System.out.println("Opción de búsqueda no válida.");
                         }
                         break;
+
                     case 3:
                         System.out.println("Buscar propuestas");
                         if (!GestionEmpleo.existeOferta()) {
@@ -369,14 +371,17 @@ public class MainRedSocialDEMO{
                         break;
 
                     case 4:
-                        System.out.println("1- modifcar nombre" +
-                                "2- modificar contraseña" +
-                                "3- RETROCEDER nombre" +
-                                "4- RETROCEDER contraseña"
-                        );
+                        System.out.println("1- modifcar nombre");
+                        System.out.println("2- modificar contrasena");
+                        System.out.println("3- Deshacer nombre");
+                        System.out.println("4- Deshacer contrasena");
+
 
                         opcion = sc.nextInt();
+                        sc.nextLine();
+
                         switch (opcion) {
+
                             case 1:
                                 System.out.println("ingrese su nuevo nombre: ");
                                 String nombre1 = sc.nextLine();
@@ -386,9 +391,9 @@ public class MainRedSocialDEMO{
                                 break;
 
                             case 2:
-                                System.out.println("ingrese su nuevo nombre: ");
+                                System.out.println("ingrese su nuevo contrasena: ");
                                 String Contrasenia = sc.nextLine();
-                                sesionActual.getHistorialContraseña().apilar(sesionActual.getNombre());
+                                sesionActual.getHistorialContraseña().apilar(sesionActual.getContraseña());
                                 sesionActual.setContraseña(Contrasenia);
                                 System.out.println("nuevo contraseña completo: " + Contrasenia);
                                 break;
@@ -402,7 +407,7 @@ public class MainRedSocialDEMO{
                                 break;
 
                             case 4:
-                                String ViejaContraseña = sesionActual.getHistorialNombre().desapilar();
+                                String ViejaContraseña = sesionActual.getHistorialContraseña().desapilar();
                                 if (ViejaContraseña != null) {
                                     System.out.println("Viejonombre: " + ViejaContraseña);
                                     sesionActual.setContraseña(ViejaContraseña);
